@@ -9,10 +9,15 @@
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0]
     ],
-    "stations": {
+    "timings": {
       "Banglore": "13:50:00",
       "Mumbai": "20:34:00",
       "Delhi": "12:32:44"
-    }
+    },
+    "stations": [
+      "Banglore",
+      "Mumbai",
+      "Delhi"
+    ]
   }
 ]

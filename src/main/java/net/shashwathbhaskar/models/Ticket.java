@@ -22,7 +22,7 @@ public class Ticket {
 
     private String destination;
 
-    private Date dateofTravel;
+    private Date dateOfTravel;
 
     private Train train;
 }

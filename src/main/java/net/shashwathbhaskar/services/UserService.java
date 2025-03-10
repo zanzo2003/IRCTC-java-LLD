@@ -12,17 +12,13 @@ import java.util.List;
 
 import java.io.File;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-public class userService {
+
+public class UserService {
 
     private User user;
 
     private List<User> usersList;
-
-    private UserServiceutil userServiceutil = new UserServiceutil();
-
-    private TicketService ticketService =  new TicketService();
 
     private static final String USERS_PATH = "src/main/java/net/shashwathbhaskar/localDB/users.json";
 
@@ -36,12 +32,18 @@ public class userService {
         return ;
     }
 
-    public userService(User currentUser) throws IOException{
-
+    public UserService(User currentUser) throws IOException{
         this.user = currentUser;
-        File users = new File(USERS_PATH);
-        this.usersList = objectMapper.readValue(users, new TypeReference<List<User>>() {});
+        this.usersList = loadUsers();
+    }
 
+    public UserService() throws IOException{
+        this.usersList = loadUsers();
+    }
+
+    private List<User> loadUsers() throws IOException{
+        File users = new File(USERS_PATH);
+        return objectMapper.readValue(users , new TypeReference<List<User>>() {});
     }
 
     public Boolean login(User user){
@@ -59,12 +61,13 @@ public class userService {
 
          */
 
-        Optional<?> foundUser = this.usersList  // using lambda expression and streams
+        Optional<User> foundUser = this.usersList  // using lambda expression and streams
                 .stream()
                 .filter(currUser ->
                         currUser.getUsername().equals(user.getUsername())
-                                && (userServiceutil.verifyPassword(currUser.getHashPassword(), user.getPassword())))
+                                && (UserServiceutil.verifyPassword(currUser.getHashPassword(), user.getPassword())))
                 .findFirst();
+        if(foundUser.isPresent()) this.user = foundUser.get();
 
         return foundUser.isPresent();
     }
@@ -82,7 +85,7 @@ public class userService {
 
     public void fetchBookings(){
         List<Ticket> allBookings = this.user.getTickets();
-        allBookings.forEach(ticket-> ticketService.getTicketInfo(ticket));
+        allBookings.forEach(ticket-> TicketService.getTicketInfo(ticket));
     }
 
     public Boolean cancelBooking(String ticketId) throws IOException{
