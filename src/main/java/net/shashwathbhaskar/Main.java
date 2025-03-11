@@ -10,7 +10,7 @@ public class Main {
         Boolean verified = abc.verifyPassword(hashpswd, password);
         System.out.println("The real password is : - " + password);
         System.out.println("The hashed passoword is : - " + hashpswd);
-        System.out.println("Is it verified " + (verified? "true": "false"));
+        System.out.println("Is it verified ? " + (verified? "Yes": "No"));
 
     }
 }

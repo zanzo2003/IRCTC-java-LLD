@@ -12,6 +12,7 @@ import java.util.List;
 
 import java.io.File;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class userService {
 
@@ -80,8 +81,20 @@ public class userService {
 
 
     public void fetchBookings(){
-        List<Ticket> allBookings = user.getTickets();
+        List<Ticket> allBookings = this.user.getTickets();
         allBookings.forEach(ticket-> ticketService.getTicketInfo(ticket));
+    }
+
+    public Boolean cancelBooking(String ticketId) throws IOException{
+        List<Ticket> allBookings = this.user.getTickets();
+        boolean removed = allBookings.removeIf(ticket -> ticket.getUuid().equals(ticketId));
+
+        if (removed) {
+            this.user.setTickets(allBookings);
+            writeToFile();
+            return true;
+        }
+        return false;
     }
 
 }
