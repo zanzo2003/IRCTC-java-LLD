@@ -2,6 +2,7 @@ package net.shashwathbhaskar.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.shashwathbhaskar.models.Ticket;
 import net.shashwathbhaskar.models.User;
 import net.shashwathbhaskar.utilities.UserServiceutil;
 
@@ -19,6 +20,8 @@ public class userService {
     private List<User> usersList;
 
     private UserServiceutil userServiceutil = new UserServiceutil();
+
+    private TicketService ticketService =  new TicketService();
 
     private static final String USERS_PATH = "src/main/java/net/shashwathbhaskar/localDB/users.json";
 
@@ -73,6 +76,12 @@ public class userService {
         }catch(Exception e){
             throw new IOException("Failed to register user " + e.getMessage(), e);
         }
+    }
+
+
+    public void fetchBookings(){
+        List<Ticket> allBookings = user.getTickets();
+        allBookings.forEach(ticket-> ticketService.getTicketInfo(ticket));
     }
 
 }
