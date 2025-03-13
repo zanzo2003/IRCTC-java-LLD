@@ -3,6 +3,7 @@ package net.shashwathbhaskar.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.shashwathbhaskar.models.User;
+import net.shashwathbhaskar.utilities.UserServiceutil;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class userService {
     private User user;
 
     private List<User> usersList;
+
+    private UserServiceutil userServiceutil = new UserServiceutil();
 
     private static final String USERS_PATH = "src/main/java/net/shashwathbhaskar/localDB/users.json";
 
@@ -56,7 +59,7 @@ public class userService {
                 .stream()
                 .filter(currUser ->
                         currUser.getUsername().equals(user.getUsername())
-                                && currUser.getPassword().equals(user.getPassword()))
+                                && (userServiceutil.verifyPassword(currUser.getHashPassword(), user.getPassword())))
                 .findFirst();
 
         return foundUser.isPresent();
