@@ -6,12 +6,10 @@ import net.shashwathbhaskar.models.User;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 import java.io.File;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class userService {
 
@@ -54,7 +52,7 @@ public class userService {
 
          */
 
-        Optional<?> foundUser = this.usersList
+        Optional<?> foundUser = this.usersList  // using lambda expression and streams
                 .stream()
                 .filter(currUser ->
                         currUser.getUsername().equals(user.getUsername())
