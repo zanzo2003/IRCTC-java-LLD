@@ -28,7 +28,7 @@ public class userService {
 
     private void writeToFile() throws IOException{
         FileWriter users = new FileWriter(USERS_PATH);
-        users.write(objectMapper.writeValueAsString(this.usersList));
+        objectMapper.writeValue(users, this.usersList);
         return ;
     }
 
