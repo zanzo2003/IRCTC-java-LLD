@@ -6,10 +6,12 @@ import net.shashwathbhaskar.models.User;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import java.io.File;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class userService {
 
@@ -38,6 +40,7 @@ public class userService {
     }
 
     public Boolean login(User user){
+        /*
         User foundUser = null;
         for(User currentUser: this.usersList){
             if(currentUser.getUsername().equals(user.getUsername())
@@ -47,7 +50,18 @@ public class userService {
             }
         }
         if(foundUser != null) this.user = foundUser;
-        return !(foundUser.equals(null));
+        return foundUser != null;
+
+         */
+
+        Optional<?> foundUser = this.usersList
+                .stream()
+                .filter(currUser ->
+                        currUser.getUsername().equals(user.getUsername())
+                                && currUser.getPassword().equals(user.getPassword()))
+                .findFirst();
+
+        return foundUser.isPresent();
     }
 
     public Boolean register(User user) throws Exception{
@@ -56,7 +70,7 @@ public class userService {
             writeToFile();
             return Boolean.TRUE;
         }catch(Exception e){
-            throw new Exception();
+            throw new IOException("Failed to register user " + e.getMessage(), e);
         }
     }
 
