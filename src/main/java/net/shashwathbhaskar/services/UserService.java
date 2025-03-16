@@ -85,7 +85,8 @@ public class UserService {
 
     public void fetchBookings(){
         List<Ticket> allBookings = this.user.getTickets();
-        allBookings.forEach(ticket-> TicketService.getTicketInfo(ticket));
+        if(allBookings.isEmpty()) System.out.println("No Bookings");
+        else allBookings.forEach(ticket-> TicketService.getTicketInfo(ticket));
     }
 
     public Boolean cancelBooking(String ticketId) throws IOException{

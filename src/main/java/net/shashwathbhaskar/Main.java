@@ -26,6 +26,7 @@ public class Main {
         }
 
         while(option!=7) {
+            System.out.println("\n");
             System.out.println("Choose option");
             System.out.println("1. Sign up");
             System.out.println("2. Login");
@@ -64,6 +65,20 @@ public class Main {
                     System.out.println(userService.login(loginUser)? "Login successfull!": "Invalid credentials");
                     break;
 
+                case 3:
+                    System.out.println("Fetching you bookings.....");
+                    userService.fetchBookings();
+                    break;
+
+                case 4:
+
+                case 5:
+
+                case 6:
+
+                case 7:
+                    System.out.println("Exit IRCTC...");
+                    break;
             }
         }
 
