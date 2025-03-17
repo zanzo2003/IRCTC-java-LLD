@@ -3,6 +3,7 @@ package net.shashwathbhaskar.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.shashwathbhaskar.models.Ticket;
+import net.shashwathbhaskar.models.Train;
 import net.shashwathbhaskar.models.User;
 import net.shashwathbhaskar.utilities.UserServiceutil;
 
@@ -46,6 +47,11 @@ public class UserService {
         return objectMapper.readValue(users , new TypeReference<List<User>>() {});
     }
 
+    private List<Train> loadTrains() throws IOException{
+        File trains = new File(TRAINS_PATH);
+        return objectMapper.readValue(trains, new TypeReference<List<Train>>() {});
+    }
+
     public Boolean login(User user){
         /*
         User foundUser = null;
@@ -79,6 +85,22 @@ public class UserService {
             return Boolean.TRUE;
         }catch(Exception e){
             throw new IOException("Failed to register user " + e.getMessage(), e);
+        }
+    }
+
+    public Optional<Train> searchTrains(String source, String desitination) throws IOException{
+        try {
+            List<Train> allTrains = loadTrains();
+            Optional<Train> firstTrain = allTrains.stream()
+                    .filter(train -> {
+                        System.out.println(train.getTrainNo());
+                        return train.getTimings().containsKey(source)
+                                && train.getTimings().containsKey(desitination)
+                                && train.getTimings().get(source).toLocalTime().isBefore(train.getTimings().get(desitination).toLocalTime());
+                    }).findFirst();
+            return firstTrain;
+        }catch(IOException ex){
+            throw new IOException(ex);
         }
     }
 

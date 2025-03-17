@@ -1,12 +1,14 @@
 package net.shashwathbhaskar;
 
 import net.shashwathbhaskar.models.Ticket;
+import net.shashwathbhaskar.models.Train;
 import net.shashwathbhaskar.models.User;
 import net.shashwathbhaskar.services.UserService;
 import net.shashwathbhaskar.utilities.UserServiceutil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -66,11 +68,24 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Fetching you bookings.....");
+                    System.out.println("Fetching your bookings.....");
                     userService.fetchBookings();
                     break;
 
                 case 4:
+                    System.out.println("Enter Boarding station : ");
+                    String source = scanner.next();
+                    System.out.println("Enter Destination station : ");
+                    String destination = scanner.next();
+                    Optional<Train> train = userService.searchTrains(source, destination);
+                    if(train.isPresent()){
+                        System.out.println("Train no : " + train.get().getTrainNo());
+                        System.out.printf("Starting time from  %s : %s \n" ,source, train.get().getTimings().get(source));
+                        System.out.printf("Arrival time at  %s : %s" , destination, train.get().getTimings().get(destination));
+                        break;
+                    }
+                    System.out.println("No trains available !");
+                    break;
 
                 case 5:
 
