@@ -41,6 +41,8 @@ public class Main {
 
             String username;
             String password;
+            String source;
+            String destination;
             switch (option){
                 case 1:
                     System.out.println("Enter your username : ");
@@ -74,9 +76,9 @@ public class Main {
 
                 case 4:
                     System.out.println("Enter Boarding station : ");
-                    String source = scanner.next();
+                    source = scanner.next();
                     System.out.println("Enter Destination station : ");
-                    String destination = scanner.next();
+                    destination = scanner.next();
                     Optional<Train> train = userService.searchTrains(source, destination);
                     if(train.isPresent()){
                         System.out.println("Train no : " + train.get().getTrainNo());
@@ -88,6 +90,18 @@ public class Main {
                     break;
 
                 case 5:
+                    System.out.println("Enter Boarding station : ");
+                    source = scanner.next();
+                    System.out.println("Enter Destination station : ");
+                    destination = scanner.next();
+                    System.out.println("Enter Train ID : ");
+                    String trainID = scanner.next();
+                    System.out.println("Enter Row : ");
+                    int row = scanner.nextInt();
+                    System.out.println("Enter Seat : ");
+                    int seat = scanner.nextInt();
+                    System.out.println(userService.reserveSeat(source, destination, trainID, row, seat));
+                    break;
 
                 case 6:
                     System.out.println("Enter Booking Id : ");
