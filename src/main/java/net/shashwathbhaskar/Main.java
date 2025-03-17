@@ -90,6 +90,9 @@ public class Main {
                 case 5:
 
                 case 6:
+                    System.out.println("Enter Booking Id : ");
+                    String ticketId = scanner.next();
+                    System.out.println(userService.cancelBooking(ticketId)? "Your Booking has been cancelled!": "Booking Not Found");
 
                 case 7:
                     System.out.println("Exit IRCTC...");
