@@ -1,13 +1,13 @@
 [
   {
-    "trainId":"Rajdhani 1254",
+    "trainId": "Rajdhani 1254",
     "trainNo": "1234",
     "seats": [
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0]
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false]
     ],
     "timings": {
       "Bangalore": "13:50:00",
@@ -24,11 +24,11 @@
     "trainId": "express1",
     "trainNo": "5678",
     "seats": [
-      [1, 1, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0]
+      [true, true, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false]
     ],
     "timings": {
       "Chennai": "08:00:00",
@@ -45,11 +45,11 @@
     "trainId": "superfast2",
     "trainNo": "91011",
     "seats": [
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0]
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false]
     ],
     "timings": {
       "Kolkata": "06:15:00",
@@ -66,11 +66,11 @@
     "trainId": "local3",
     "trainNo": "121314",
     "seats": [
-      [1, 0, 1, 0, 1],
-      [0, 1, 0, 1, 0],
-      [1, 0, 1, 0, 1],
-      [0, 1, 0, 1, 0],
-      [1, 0, 1, 0, 1]
+      [true, false, true, false, true],
+      [false, true, false, true, false],
+      [true, false, true, false, true],
+      [false, true, false, true, false],
+      [true, false, true, false, true]
     ],
     "timings": {
       "Pune": "09:00:00",
@@ -87,11 +87,11 @@
     "trainId": "rajdhani5",
     "trainNo": "181920",
     "seats": [
-      [1, 1, 1, 1, 1],
-      [1, 1, 1, 1, 1],
-      [1, 1, 1, 1, 1],
-      [1, 1, 1, 1, 1],
-      [1, 1, 1, 1, 1]
+      [true, true, true, true, true],
+      [true, true, true, true, true],
+      [true, true, true, true, true],
+      [true, true, true, true, true],
+      [true, true, true, true, true]
     ],
     "timings": {
       "Delhi": "17:00:00",
